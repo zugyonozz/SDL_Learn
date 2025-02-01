@@ -85,18 +85,7 @@ SDL Roadmap
 │       ├── SDL_CreateCond
 │       ├── SDL_CondWait
 │       └── SDL_DestroyCond
-├── Platforms
-│   ├── SDL_GetPlatform
-│   ├── SDL_IsTablet
-│   └── SDL_HasAVX
-
-data structure:
-SDL
-├── Src 
-|   ├── include
-|	└── lib
-├── Workspace
-|	├── main.cpp
-|	└── makefile
-├── SDL2_image.dll
-├── SDL2.dll
+└── Platforms
+    ├── SDL_GetPlatform
+    ├── SDL_IsTablet
+    └── SDL_HasAVX
