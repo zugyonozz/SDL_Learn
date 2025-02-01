@@ -9,7 +9,7 @@ GCC  : 14.2.0 (Rev2, Built by MSYS2 project) x86_64-w64-mingw32
 
 Tutor :
 
-Masuk ku direktori file yang akan di Compile cpp ```cd pathToFile``` di terminal, lalu compile dengan ```make``` dan jalankan hasil kompilasi .exe
+Masuk ke direktori file yang akan di Compile cpp ```cd pathToFile``` di terminal, lalu compile dengan ```make``` dan jalankan hasil kompilasi .exe
 
 
 
