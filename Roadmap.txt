@@ -1,0 +1,102 @@
+SDL Roadmap
+├── Core
+│   ├── Initialization
+│   │   ├── SDL_Init
+│   │   ├── SDL_Quit
+│   │   └── SDL_GetError
+│   ├── Version Management
+│   │   ├── SDL_GetVersion
+│   │   └── SDL_VERSION
+│   └── Memory Management
+│       ├── SDL_malloc
+│       ├── SDL_free
+│       └── SDL_memset
+├── Video
+│   ├── Window
+│   │   ├── SDL_CreateWindow
+│   │   ├── SDL_DestroyWindow
+│   │   ├── SDL_SetWindowTitle
+│   │   └── SDL_GetWindowSize
+│   ├── Rendering
+│   │   ├── SDL_CreateRenderer
+│   │   ├── SDL_RenderClear
+│   │   ├── SDL_RenderCopy
+│   │   └── SDL_RenderPresent
+│   └── Surface
+│       ├── SDL_CreateRGBSurface
+│       ├── SDL_LoadBMP
+│       ├── SDL_FreeSurface
+│       └── SDL_BlitSurface
+├── Audio
+│   ├── Playback
+│   │   ├── SDL_OpenAudioDevice
+│   │   ├── SDL_QueueAudio
+│   │   ├── SDL_PauseAudioDevice
+│   │   └── SDL_CloseAudioDevice
+│   ├── WAV Support
+│   │   ├── SDL_LoadWAV
+│   │   └── SDL_FreeWAV
+│   └── Mixing
+│       ├── SDL_MixAudioFormat
+│       └── SDL_GetAudioDeviceName
+├── Input
+│   ├── Keyboard
+│   │   ├── SDL_GetKeyboardState
+│   │   ├── SDL_StartTextInput
+│   │   └── SDL_StopTextInput
+│   ├── Mouse
+│   │   ├── SDL_GetMouseState
+│   │   ├── SDL_SetCursor
+│   │   └── SDL_ShowCursor
+│   └── Game Controller
+│       ├── SDL_IsGameController
+│       ├── SDL_GameControllerOpen
+│       ├── SDL_GameControllerGetButton
+│       └── SDL_GameControllerClose
+├── Events
+│   ├── Polling
+│   │   ├── SDL_PollEvent
+│   │   └── SDL_WaitEvent
+│   ├── Event Types
+│   │   ├── SDL_KEYDOWN
+│   │   ├── SDL_MOUSEBUTTONDOWN
+│   │   └── SDL_QUIT
+│   └── Custom Events
+│       ├── SDL_RegisterEvents
+│       └── SDL_PushEvent
+├── Timer
+│   ├── SDL_GetTicks
+│   ├── SDL_Delay
+│   └── SDL_AddTimer
+├── Filesystem
+│   ├── SDL_RWFromFile
+│   ├── SDL_RWFromMem
+│   └── SDL_GetBasePath
+├── Threads
+│   ├── Threads
+│   │   ├── SDL_CreateThread
+│   │   ├── SDL_WaitThread
+│   │   └── SDL_DetachThread
+│   ├── Mutexes
+│   │   ├── SDL_CreateMutex
+│   │   ├── SDL_LockMutex
+│   │   └── SDL_UnlockMutex
+│   └── Condition Variables
+│       ├── SDL_CreateCond
+│       ├── SDL_CondWait
+│       └── SDL_DestroyCond
+├── Platforms
+│   ├── SDL_GetPlatform
+│   ├── SDL_IsTablet
+│   └── SDL_HasAVX
+
+data structure:
+SDL
+├── Src 
+|   ├── include
+|	└── lib
+├── Workspace
+|	├── main.cpp
+|	└── makefile
+├── SDL2_image.dll
+├── SDL2.dll
