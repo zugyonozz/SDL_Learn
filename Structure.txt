@@ -1,0 +1,10 @@
+Structure:
+SDL
+├── Src 
+|   ├── include
+|   └── lib
+└── Workspace
+  	├── main.cpp
+    ├── makefile
+    ├── SDL2.dll
+  	└── SDL2_image.dll
