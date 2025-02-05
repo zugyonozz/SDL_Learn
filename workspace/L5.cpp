@@ -1,91 +1,72 @@
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
-
 using namespace std;
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int W = 1000;
+const int H = 600;
 
-int main(int argc, char* args[]) {
-    // Inisialisasi SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        cerr << "Gagal menginisialisasi SDL: " << SDL_GetError() << endl;
-        return -1;
-    }
+void Tile(SDL_Renderer* renderer, int x, int y, int w, int h,  int r, int g, int b){
+	SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+	SDL_Rect rect = {x, y, w, h};
+	SDL_RenderFillRect(renderer, &rect);
+}
 
-    // Inisialisasi SDL_image
-    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
-        cerr << "Gagal menginisialisasi SDL_image: " << IMG_GetError() << endl;
-        SDL_Quit();
-        return -1;
-    }
+int main(int argc, char* args[]){
+	if(SDL_Init(SDL_INIT_VIDEO) < 0){
+		cerr << "Gagal Inisialisasi Video " << SDL_GetError() << endl;
+		return -1;
+	}
 
-    // Buat window
-    SDL_Window* window = SDL_CreateWindow("SDL Texture Example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-    if (!window) {
-        cerr << "Gagal membuat window: " << SDL_GetError() << endl;
-        SDL_Quit();
-        return -1;
-    }
+	SDL_Window* window = SDL_CreateWindow("L5", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, W, H, SDL_WINDOW_SHOWN);
 
-    // Buat renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        cerr << "Gagal membuat renderer: " << SDL_GetError() << endl;
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return -1;
-    }
+	if(window == nullptr){
+		cerr << "Gagal Memuat Window " << SDL_GetError() << endl;
+		SDL_Quit();
+		return -1;
+	}
 
-    // Muat gambar sebagai texture
-    SDL_Surface* imageSurface = IMG_Load("image.jpg"); // Pastikan file image.png ada di folder yang sama
-    if (!imageSurface) {
-        cerr << "Gagal memuat gambar: " << IMG_GetError() << endl;
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return -1;
-    }
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    // Konversi ke SDL_Texture
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, imageSurface);
-    SDL_FreeSurface(imageSurface);
-    if (!texture) {
-        cerr << "Gagal membuat texture: " << SDL_GetError() << endl;
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return -1;
-    }
+	if(renderer == nullptr){
+		cerr << "Gagal Mebuat Renderer " << SDL_GetError() << endl;
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+		return -1;
+	}
 
-    // Loop utama
-    bool running = true;
-    SDL_Event event;
-    while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                running = false;
-            }
-        }
+	bool running = true;
+	SDL_Event event;
+	int C = 0;
 
-        // Render background putih
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderClear(renderer);
+	while(running){
+		while(SDL_PollEvent(&event)){
+			if(event.type == SDL_QUIT){
+				running = false;
+			}
+		}
 
-        // Render gambar
-        SDL_RenderCopy(renderer, texture, NULL, NULL);
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+		SDL_RenderClear(renderer);
 
-        // Tampilkan render ke layar
-        SDL_RenderPresent(renderer);
-    }
-
-    // Hapus resource
-    SDL_DestroyTexture(texture);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    IMG_Quit();
-    SDL_Quit();
-
-    return 0;
+		for(int i = 0; i < 6; i++){
+			for(int j = 0; j < 10; j++){
+				if(i%2 == 0){
+					Tile(renderer, j*100, i*100, 100, 100, 221, 235, 157);
+					j++;
+					Tile(renderer, j*100, i*100, 100, 100, 255, 255, 255);
+					j++;
+					Tile(renderer, j*100, i*100, 100, 100, 160, 200, 120);
+				}else{
+					Tile(renderer, j*100, i*100, 100, 100, 160, 200, 120);
+					j++;
+					Tile(renderer, j*100, i*100, 100, 100, 221, 235, 157);
+				}
+			}
+		}
+		SDL_RenderPresent(renderer);
+		SDL_Delay(16);
+	}
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
